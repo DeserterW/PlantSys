@@ -1,16 +1,16 @@
 package com.why.plant.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.why.plant.dao.model.UserTable;
+import com.why.plant.dao.model.EnvTable;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @Author:why
- * @Date 2022/5/2 10:39 上午
+ * @Date 2021/8/25 10:39 上午
  * @Description: adr
  */
 @Mapper
-public interface UserTableMapper extends BaseMapper<UserTable> {
+public interface EnvTableMapper extends BaseMapper<EnvTable> {
 
 }
 

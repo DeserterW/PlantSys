@@ -1,6 +1,7 @@
 package com.why.plant.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.why.plant.dao.model.PlantTable;
 import com.why.plant.dao.model.UserTable;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -10,7 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @Description: adr
  */
 @Mapper
-public interface UserTableMapper extends BaseMapper<UserTable> {
+public interface PlantTableMapper extends BaseMapper<PlantTable> {
 
 }
 

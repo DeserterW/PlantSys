@@ -9,8 +9,8 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-@TableName("UserTable")
-public class UserTable extends PageQuery  implements Serializable {
+@TableName("SchemeTable")
+public class SchemeTable extends PageQuery  implements Serializable {
     /**
      * id
      */
@@ -18,38 +18,37 @@ public class UserTable extends PageQuery  implements Serializable {
     private Long id;
 
     /**
-     * 名称
+     * 植物编号
      */
-    private String name;
-
-
-    /**
-     * 性别
-     */
-    private Integer  gender;
+    private Long plant_id;
 
     /**
-     * 账户
+     * 温度
      */
-    private String account;
+    private Double  temperature;
 
     /**
-     * 密码
+     * 光照时间
      */
-    private String password;
+    private Integer light_time;
 
     /**
-     *
+     * 湿度
      */
-    private Integer employYears;
+    private Integer moisture;
 
     /**
-     * 邮箱
+     * 肥料
      */
-    private String email;
+    private String fertilizer;
 
     /**
-     * 角色
+     * 生长期
      */
-    private String character;
+    private Integer grow_period;
+
+    /**
+     * 赞数目
+     */
+    private Integer likes_nums;
 }
