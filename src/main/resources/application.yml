@@ -9,7 +9,7 @@ spring:
     prefix: classpath:/templates
     suffix: .html
     cache: false
-    mode: HTML5
+    mode: LEGACYHTML5
     check-template: true
     servlet:
       content-type: text/html
@@ -18,3 +18,4 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
+
