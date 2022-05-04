@@ -11,4 +11,6 @@ public interface UserTableService extends IService<UserTable> {
     PageInfo selectAll(UserTable userTable);
 
     Boolean checkAccount(Map<String,String>params);
+
+
 }

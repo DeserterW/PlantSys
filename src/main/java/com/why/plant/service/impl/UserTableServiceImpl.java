@@ -41,7 +41,6 @@ public class UserTableServiceImpl extends ServiceImpl<UserTableMapper, UserTable
         {
             if(userTable.getPassword().equals(params.get("password")))
             {
-                System.out.println(userTable.getPassword());
                 return true;
             }else
             {

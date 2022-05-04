@@ -1,45 +1,45 @@
 package com.why.plant.dao.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import java.io.Serializable;
+import java.util.Date;
+
 import com.why.plant.common.model.PageQuery;
 import lombok.Data;
 
-import java.io.Serializable;
-
+/**
+ * 
+ * @TableName EnvironmentalChangeTable
+ */
+@TableName(value ="EnvironmentalChangeTable")
 @Data
-@TableName("EnvTable")
-public class EnvTable  extends PageQuery implements Serializable {
+public class EnvironmentalchangeTable extends PageQuery implements Serializable {
     /**
-     * id
+     * 
      */
     @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
-     * 温度
+     * 
      */
     private Double temperature;
 
+    /**
+     * 
+     */
+    private Double humidity;
 
     /**
-     * 湿度
+     * 
      */
-    private Double  humidity;
+    private Date recordTime;
 
     /**
-     * 光照强度
+     * 
      */
-    private Integer lightLevel;
-
-    /**
-     * 肥力
-     */
-    private Integer fertilizer;
-
-    /**
-     * 用户id
-     */
-    private Long userId;
+    private Long envId;
 }

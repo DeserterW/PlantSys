@@ -23,7 +23,7 @@ public class LoginController {
 
     @PostMapping("/login/check")
     @ResponseBody
-    @CrossOrigin
+    @CrossOrigin(origins = {"*"},allowCredentials = "true")
     public Result loginCheck(@RequestBody Map<String, String> params)
     {
         String ret = "failed";
@@ -32,7 +32,6 @@ public class LoginController {
         {
             ret = "success";
         }
-        System.out.println(ret);
         return Result.ok(ret);
     }
 
