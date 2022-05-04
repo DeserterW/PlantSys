@@ -18,28 +18,28 @@ import lombok.Data;
 @Data
 public class PersonalSchemeTable extends PageQuery implements Serializable {
     /**
-     * 
+     * id
      */
     @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
-     * 
+     * user_id
      */
     private Long userId;
 
     /**
-     * 
+     * scheme_id
      */
     private Long schemeId;
 
     /**
-     * 
+     * 日期
      */
     private Date date;
 
     /**
-     * 
+     * 执行时间
      */
     private Date exceuteTime;
 }

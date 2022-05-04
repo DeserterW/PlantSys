@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+    <script type="text/javascript">
+        function login() {
+
+            $.ajax({
+                type: "post",
+                url: "localhost:8080/login/check",
+                data: {"name": $("username").val(), "password": $("password").val(),"character":$("character").val()},
+                async: true,
+                dataType: "json",
+                success: function (data) {
+                    alert("success")
+                },
+                error: function (data)
+                {
+                    alert("failed")
+
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div id="login-box">
+    <h1>Login</h1>
+    <form>
+        <div class="form">
+            <div class="item">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <input type="text" placeholder="Username" id="username">
+            </div>
+            <div class="item">
+                <i class="fa fa-key" aria-hidden="true"></i>
+                <input type="password" placeholder="Password" id="password">
+            </div>
+            <div>
+
+                <div>
+                    <input type="radio" id="user" name="character" value="user"
+                           checked>
+                    <label for="user">用户</label>
+                    <input type="radio" id="admin" name="character" value="admin">
+                    <label for="admin">管理员</label>
+                </div>
+            </div>
+        </div>
+        <button id="login" type="submit" onclick="login()">Login</button>
+    </form>
+</div>
+</body>
+
+</html>

@@ -18,28 +18,28 @@ import lombok.Data;
 @Data
 public class CommentsTable extends PageQuery implements Serializable {
     /**
-     * 
+     * id
      */
     @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
-     * 
+     * user_id
      */
     private Long userId;
 
     /**
-     * 
+     * 评论内容
      */
     private String content;
 
     /**
-     * 
+     * 日期
      */
     private Date date;
 
     /**
-     * 
+     * 赞数
      */
     private Integer likesNums;
 

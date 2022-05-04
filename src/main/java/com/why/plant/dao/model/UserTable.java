@@ -26,7 +26,7 @@ public class UserTable extends PageQuery  implements Serializable {
     /**
      * 性别
      */
-    private Integer  gender;
+    private Integer gender;
 
     /**
      * 账户
@@ -39,7 +39,7 @@ public class UserTable extends PageQuery  implements Serializable {
     private String password;
 
     /**
-     *
+     * 从业年龄
      */
     private Integer employYears;
 
@@ -51,5 +51,5 @@ public class UserTable extends PageQuery  implements Serializable {
     /**
      * 角色
      */
-    private String character;
+    private String identity;
 }

@@ -18,12 +18,12 @@ import lombok.Data;
 @Data
 public class PersonalPlantTable extends PageQuery implements Serializable {
     /**
-     * 
+     * user_id
      */
     private Long userId;
 
     /**
-     * 
+     * plant_id
      */
     private Long plantId;
 
