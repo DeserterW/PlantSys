@@ -39,8 +39,9 @@ public class UserTableServiceImpl extends ServiceImpl<UserTableMapper, UserTable
         UserTable userTable = userTableMapper.selectOne(new LambdaUpdateWrapper<UserTable>().eq(UserTable::getAccount,params.get("name")));
         if(userTable != null)
         {
-            if(userTable.getPassword() == params.get("password"))
+            if(userTable.getPassword().equals(params.get("password")))
             {
+                System.out.println(userTable.getPassword());
                 return true;
             }else
             {
