@@ -2,6 +2,7 @@ package com.why.plant.controller;
 
 
 import com.why.plant.common.model.Result;
+import com.why.plant.dao.model.UserTable;
 import com.why.plant.service.UserTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,16 +24,16 @@ public class LoginController {
 
     @PostMapping("/login/check")
     @ResponseBody
-    @CrossOrigin(origins = {"*"},allowCredentials = "true")
+    @CrossOrigin
     public Result loginCheck(@RequestBody Map<String, String> params)
     {
-        String ret = "failed";
+        UserTable userTable = userTableService.checkAccount(params);
 
-        if(userTableService.checkAccount(params) == true)
+        if(userTable != null)
         {
-            ret = "success";
+            return Result.ok(userTable);
         }
-        return Result.ok(ret);
+        return Result.error("failed");
     }
 
 }

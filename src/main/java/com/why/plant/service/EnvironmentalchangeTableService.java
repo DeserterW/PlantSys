@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.why.plant.dao.model.EnvironmentalchangeTable;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,5 +14,5 @@ import java.util.Map;
 */
 public interface EnvironmentalchangeTableService extends IService<EnvironmentalchangeTable> {
 
-    public PageInfo showRecentTempature(EnvironmentalchangeTable environmentalchangeTable);
+    public List<EnvironmentalchangeTable> showRecentTemperature(List<Long> envs_id);
 }

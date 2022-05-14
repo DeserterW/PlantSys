@@ -32,4 +32,9 @@ public class PlantTable extends PageQuery implements Serializable {
      * 品种
      */
     private String varity;
+
+    /**
+     * 名字
+     */
+    private String name;
 }

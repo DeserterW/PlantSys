@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/user")
 public class UserTableController {
 
     @Autowired
@@ -34,10 +34,24 @@ public class UserTableController {
      */
     @PostMapping("/add")
     @ResponseBody
-    public String add(@RequestBody UserTable userTable){
+    public Result add(@RequestBody UserTable userTable){
         boolean save = userTableService.save(userTable);
-        return "ok";
+        return Result.ok();
     }
 
+    @PostMapping("/info_change")
+    @ResponseBody
+    @CrossOrigin
+    public Result submitInfo(@RequestBody UserTable userTable)
+    {
+        if(userTableService.submitUserInfo(userTable))
+        {
+            return Result.ok();
+        }
+        else
+        {
+            return Result.error("failed");
+        }
+    }
 
 }

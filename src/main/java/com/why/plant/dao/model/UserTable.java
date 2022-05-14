@@ -52,4 +52,9 @@ public class UserTable extends PageQuery  implements Serializable {
      * 角色
      */
     private String identity;
+
+    /**
+     * 审核通过
+     */
+    private Boolean passed;
 }

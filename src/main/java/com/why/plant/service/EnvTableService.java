@@ -17,4 +17,8 @@ public interface EnvTableService extends IService<EnvTable> {
 
 
     PageInfo selectAll(EnvTable EnvTable);
+
+    List<Long> selectEnv(Long userId);
+
+    List<EnvTable> selectEnvDetail(Long userId);
 }

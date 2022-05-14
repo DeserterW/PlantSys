@@ -28,23 +28,12 @@ public class EnvironmentalchangeTableServiceImpl extends ServiceImpl<Environment
     private EnvironmentalchangeTableMapper environmentalchangeTableMapper;
 
     @Override
-    public PageInfo showRecentTempature(EnvironmentalchangeTable environmentalchangeTable) {
+    public List<EnvironmentalchangeTable> showRecentTemperature(List<Long> envs_id) {
 
-        if(environmentalchangeTable.getPage()!=null && environmentalchangeTable.getSize()!=null){
-            PageHelper.startPage(environmentalchangeTable.getPage(), environmentalchangeTable.getSize());
-        }
-        List<EnvironmentalchangeTable> environmentalchangeTables;
-        if(environmentalchangeTable.getEnvId() != null) {
-            environmentalchangeTables = environmentalchangeTableMapper.selectList(new LambdaQueryWrapper<EnvironmentalchangeTable>()
-                    .eq(EnvironmentalchangeTable::getEnvId,environmentalchangeTable.getEnvId()));
-        }else
-        {
-            return null;
-        }
+        List<EnvironmentalchangeTable> result =  environmentalchangeTableMapper.selectList(new LambdaQueryWrapper<EnvironmentalchangeTable>()
+                .in(EnvironmentalchangeTable::getEnvId,envs_id));
 
-        PageInfo<EnvironmentalchangeTable> pageInfo = new PageInfo<>(environmentalchangeTables);
-
-        return pageInfo;
+        return result;
     }
 }
 

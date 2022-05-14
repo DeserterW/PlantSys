@@ -42,4 +42,9 @@ public class EnvTable  extends PageQuery implements Serializable {
      * 用户id
      */
     private Long userId;
+
+    /**
+     * 环境名字
+     */
+    private String envName;
 }

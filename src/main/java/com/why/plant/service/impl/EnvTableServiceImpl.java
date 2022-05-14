@@ -11,6 +11,7 @@ import com.why.plant.service.EnvTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,5 +29,31 @@ public class EnvTableServiceImpl extends ServiceImpl<EnvTableMapper, EnvTable> i
         List<EnvTable> envTables = envTableMapper.selectList(new LambdaQueryWrapper<EnvTable>());
         PageInfo<EnvTable> pageInfo =new PageInfo<>(envTables);
         return pageInfo;
+    }
+
+    @Override
+    public List<Long> selectEnv(Long user_id) {
+        List<EnvTable> list_env = envTableMapper.selectList(new LambdaQueryWrapper<EnvTable>().select(EnvTable::getId).eq(EnvTable::getUserId,user_id));
+
+        List<Long> result = new ArrayList<>();
+        for(int i =0 ;i < list_env.size() ;i++)
+        {
+            result.add(list_env.get(i).getId());
+        }
+
+        return result;
+    }
+
+    @Override
+    public List<EnvTable> selectEnvDetail(Long userId) {
+
+        List<EnvTable> envTables = envTableMapper.selectList(new LambdaQueryWrapper<EnvTable>().eq(EnvTable::getUserId,userId));
+
+        if(envTables != null)
+        {
+            return envTables;
+        }
+
+        return null;
     }
 }

@@ -3,6 +3,8 @@ package com.why.plant.service;
 import com.why.plant.dao.model.PersonalSchemeTable;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
 * @author Administrator
 * @description 针对表【PersonalSchemeTable】的数据库操作Service
@@ -10,4 +12,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface PersonalSchemeTableService extends IService<PersonalSchemeTable> {
 
+    List<PersonalSchemeTable> selectAllPersonalTable(Long userId);
+
+    Long selectSchemeId(Long personalSchemeId);
+
+    boolean addPersonalScheme(Long userId, Long schemeId);
 }

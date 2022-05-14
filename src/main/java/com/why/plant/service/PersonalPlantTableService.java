@@ -2,6 +2,9 @@ package com.why.plant.service;
 
 import com.why.plant.dao.model.PersonalPlantTable;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.why.plant.dao.model.PlantTable;
+
+import java.util.List;
 
 /**
 * @author Administrator
@@ -10,4 +13,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface PersonalPlantTableService extends IService<PersonalPlantTable> {
 
+    List<PersonalPlantTable> selectPersonalPlantInfo(Long user_id);
+
+    Boolean addPersonalPlant(PersonalPlantTable personalPlantTable);
+
+    Boolean editPersonalPlant(PersonalPlantTable personalPlantTable);
+
+    Boolean removePersonalPlant(PersonalPlantTable personalPlantTable);
 }

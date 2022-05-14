@@ -17,6 +17,13 @@ import lombok.Data;
 @TableName(value ="PersonalPlantTable")
 @Data
 public class PersonalPlantTable extends PageQuery implements Serializable {
+
+    /**
+     * id
+     */
+    @TableId(type = IdType.AUTO)
+    private Long id;
+
     /**
      * user_id
      */
@@ -35,10 +42,15 @@ public class PersonalPlantTable extends PageQuery implements Serializable {
     /**
      * 
      */
-    private String plantNums;
+    private Integer plantNums;
 
     /**
-     * 
+     * 生长期
      */
     private Integer growPeriod;
+
+    /**
+     * 健康状态
+     */
+    private Integer growStatus;
 }

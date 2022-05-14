@@ -56,5 +56,9 @@ public class Result<T>{
         result.setMsg(message);
         return result;
     }
+
+    public static Result error() {
+        return error("failed");
+    }
 }
 

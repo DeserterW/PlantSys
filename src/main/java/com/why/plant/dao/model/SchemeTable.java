@@ -20,7 +20,7 @@ public class SchemeTable extends PageQuery  implements Serializable {
     /**
      * 植物编号
      */
-    private Long plant_id;
+    private Long plantId;
 
     /**
      * 温度
@@ -30,7 +30,7 @@ public class SchemeTable extends PageQuery  implements Serializable {
     /**
      * 光照时间
      */
-    private Integer light_time;
+    private Integer lightTime;
 
     /**
      * 湿度
@@ -45,10 +45,30 @@ public class SchemeTable extends PageQuery  implements Serializable {
     /**
      * 生长期
      */
-    private Integer grow_period;
+    private Integer growPeriod;
 
     /**
      * 赞数目
      */
-    private Integer likes_nums;
+    private Integer likesNums;
+
+    /**
+     * 方案名称
+     */
+    private String schemeName;
+
+    /**
+     * 是否上传
+     */
+    private Boolean isUpload;
+
+    /**
+     * 是否通过
+     */
+    private Boolean passed;
+
+    /**
+     * userId
+     */
+    private Long userId;
 }

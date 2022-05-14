@@ -9,6 +9,7 @@ import com.why.plant.common.model.PageQuery;
 import com.why.plant.dao.mapper.UserTableMapper;
 import com.why.plant.dao.model.UserTable;
 import com.why.plant.service.UserTableService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,27 +29,52 @@ public class UserTableServiceImpl extends ServiceImpl<UserTableMapper, UserTable
             PageHelper.startPage(userTable.getPage(), userTable.getSize());
         }
         List<UserTable> userTables = userTableMapper.selectList(new LambdaQueryWrapper<UserTable>());
-        userTableMapper.update(new UserTable(),new LambdaUpdateWrapper<UserTable>().set(UserTable::getName,"why").eq(UserTable::getName,"why"));
+//        userTableMapper.update(new UserTable(),new LambdaUpdateWrapper<UserTable>().set(UserTable::getName,"why").eq(UserTable::getName,"why"));
         PageInfo<UserTable> pageInfo =new PageInfo<>(userTables);
         return pageInfo;
     }
 
     @Override
-    public Boolean checkAccount(Map<String, String> params)
+    public UserTable checkAccount(Map<String, String> params)
     {
-        UserTable userTable = userTableMapper.selectOne(new LambdaUpdateWrapper<UserTable>().eq(UserTable::getAccount,params.get("name")));
-        if(userTable != null)
-        {
-            if(userTable.getPassword().equals(params.get("password")))
+        UserTable userTable = userTableMapper.selectOne(new LambdaQueryWrapper<UserTable>().eq(UserTable::getAccount,params.get("username")));
+        if(userTable != null) {
+            if(StringUtils.equals(userTable.getPassword(),params.get("password")))
             {
-                return true;
-            }else
-            {
-                return false;
+                return userTable;
             }
-        }else
-        {
-            return false;
         }
+        return null;
+    }
+
+    @Override
+    public Boolean submitUserInfo(UserTable userTable) {
+        Long id = userTable.getId();
+        UserTable selectTable = userTableMapper.selectOne(new LambdaQueryWrapper<UserTable>().eq(UserTable::getId, id));
+        userTable.setAccount(selectTable.getAccount());
+        userTable.setPassword(selectTable.getPassword());
+        userTable.setIdentity(selectTable.getIdentity());
+        if (userTable.getName() == null) {
+            userTable.setName(selectTable.getName());
+        }
+        if (userTable.getGender() == null) {
+            userTable.setGender(selectTable.getGender());
+        }
+        if (userTable.getEmail() == null)
+        {
+            userTable.setEmail(selectTable.getEmail());
+        }
+        if(userTable.getEmployYears() == null)
+        {
+            userTable.setEmployYears(selectTable.getEmployYears());
+        }
+
+        if(selectTable != null)
+        {
+            userTable.setPassed(false);
+            userTableMapper.updateById(userTable);
+            return true;
+        }
+        return false;
     }
 }

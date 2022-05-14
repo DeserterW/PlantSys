@@ -42,4 +42,10 @@ public class PersonalSchemeTable extends PageQuery implements Serializable {
      * 执行时间
      */
     private Date exceuteTime;
+
+    /**
+     * 环境Id
+     */
+    private Long envId;
+
 }
