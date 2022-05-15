@@ -1,7 +1,10 @@
 package com.why.plant.controller;
+import ch.qos.logback.core.pattern.util.RegularEscapeUtil;
 import com.why.plant.common.model.Result;
 import com.why.plant.dao.mapper.SchemeTableMapper;
+import com.why.plant.dao.model.EnvTable;
 import com.why.plant.dao.model.SchemeTable;
+import com.why.plant.service.EnvTableService;
 import com.why.plant.service.PersonalSchemeTableService;
 import com.why.plant.service.SchemeTableService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RequestMapping("/scheme")
 @RestController
+@CrossOrigin
 public class SchemeTableController {
 
     @Autowired
@@ -21,8 +26,10 @@ public class SchemeTableController {
     @Autowired
     private PersonalSchemeTableService personalSchemeTableService;
 
+    @Autowired
+    private EnvTableService envTableService;
+
     @PostMapping("/detail")
-    @CrossOrigin
     public Result selectScheme(@RequestBody Map<String,Long> param)
     {
         Long personalSchemeId = param.get("personalSchemeId");
@@ -47,5 +54,54 @@ public class SchemeTableController {
 
     }
 
+    @PostMapping("/all")
+    public Result seletAll(@RequestBody Map<String,Boolean> params)
+    {
+        Boolean passed = params.get("passed");
+
+        List<SchemeTable> schemeTables =  schemeTableService.selectScheme(passed);
+
+        if(schemeTables.isEmpty())
+        {
+            return Result.error();
+        }
+
+        return Result.ok(schemeTables);
+    }
+
+    @PostMapping("/recommandation")
+    public Result recommandation(@RequestBody Map<String,Long> params)
+    {
+        if(params == null)
+        {
+            return Result.error();
+        }
+        Long plantId = params.get("plantId");
+        Long envId = params.get("envId");
+
+        EnvTable envTable = envTableService.selectEnvById(envId);
+        List<SchemeTable> schemeTables = schemeTableService.selectAllScheme(plantId);
+
+        List<SchemeTable>recommdationScheme = schemeTableService.recommdation(envTable,schemeTables);
+
+        if(recommdationScheme != null)
+        {
+            return Result.ok(recommdationScheme);
+        }else
+        {
+            return Result.error();
+        }
+    }
+
+    @PostMapping("/like")
+    public Result putALike(@RequestBody SchemeTable schemeTable)
+    {
+        if(schemeTableService.putALike(schemeTable))
+        {
+            return Result.ok();
+        }
+
+        return Result.error();
+    }
 
 }

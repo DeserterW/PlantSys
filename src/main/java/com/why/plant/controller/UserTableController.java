@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+import java.util.Map;
+
+@RestController
 @RequestMapping("/user")
 public class UserTableController {
 
@@ -51,6 +54,21 @@ public class UserTableController {
         else
         {
             return Result.error("failed");
+        }
+    }
+
+    @PostMapping("/getName")
+    @CrossOrigin
+    public Result getAllUserName(@RequestBody Map<String,Long>params)
+    {
+        List<UserTable> userTables = userTableService.selectAllName(null);
+
+        if(userTables != null)
+        {
+            return Result.ok(userTables);
+        }else
+        {
+            return Result.error();
         }
     }
 

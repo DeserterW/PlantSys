@@ -56,4 +56,30 @@ public class EnvTableServiceImpl extends ServiceImpl<EnvTableMapper, EnvTable> i
 
         return null;
     }
+
+    @Override
+    public Boolean inserEnv(EnvTable envTable) {
+
+        Integer res = envTableMapper.insert(envTable);
+
+        return res == 1 ? true : false;
+
+    }
+
+    @Override
+    public Boolean removeEnv(EnvTable envTable) {
+
+
+        Integer res = envTableMapper.deleteById(envTable.getId());
+
+        return res == 1 ? true : false;
+    }
+
+    @Override
+    public EnvTable selectEnvById(Long envId) {
+
+        EnvTable envTable = envTableMapper.selectById(envId);
+
+        return envTable;
+    }
 }

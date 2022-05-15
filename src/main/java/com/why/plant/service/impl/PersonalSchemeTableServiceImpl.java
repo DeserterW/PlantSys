@@ -47,14 +47,14 @@ public class PersonalSchemeTableServiceImpl extends ServiceImpl<PersonalSchemeTa
     }
 
     @Override
-    public boolean addPersonalScheme(Long userId, Long schemeId) {
+    public boolean addPersonalScheme(Long userId, Long schemeId, Long envId) {
 
         PersonalSchemeTable personalSchemeTable = new PersonalSchemeTable();
 
         personalSchemeTable.setSchemeId(schemeId);
         personalSchemeTable.setUserId(userId);
         personalSchemeTable.setDate(new Date());
-
+        personalSchemeTable.setEnvId(envId);
         Integer ret = personalSchemeTableMapper.insert(personalSchemeTable);
         if(ret == 1)
         {
@@ -62,6 +62,12 @@ public class PersonalSchemeTableServiceImpl extends ServiceImpl<PersonalSchemeTa
         }
 
         return false;
+    }
+
+    @Override
+    public boolean removePersonalScheme(Long schemePerId) {
+        Integer res = personalSchemeTableMapper.deleteById(schemePerId);
+        return res == 1 ? true :false;
     }
 
 }

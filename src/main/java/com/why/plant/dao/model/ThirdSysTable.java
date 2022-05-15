@@ -31,4 +31,9 @@ public class ThirdSysTable extends PageQuery implements Serializable {
      * 访问地址
      */
     private String systemAddr;
+
+    /**
+     * 获取token地址
+     */
+    private String accessTokenadd;
 }

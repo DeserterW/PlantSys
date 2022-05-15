@@ -16,5 +16,7 @@ public interface PersonalSchemeTableService extends IService<PersonalSchemeTable
 
     Long selectSchemeId(Long personalSchemeId);
 
-    boolean addPersonalScheme(Long userId, Long schemeId);
+    boolean addPersonalScheme(Long userId, Long schemeId, Long envId);
+
+    boolean removePersonalScheme(Long schemePerId);
 }

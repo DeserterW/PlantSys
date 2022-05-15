@@ -43,4 +43,13 @@ public class CommentsTable extends PageQuery implements Serializable {
      */
     private Integer likesNums;
 
+    /**
+     * 标题
+     */
+    private String title;
+
+    /**
+     * passed
+     */
+    private Boolean passed;
 }

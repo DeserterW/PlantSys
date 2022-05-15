@@ -87,6 +87,17 @@ public class PersonalInfoController {
         }
     }
 
+    @PostMapping("/removeEnv")
+    public Result removeEnv(@RequestBody EnvTable envTable)
+    {
+        if(envTableService.removeEnv(envTable))
+        {
+            return Result.ok();
+        }else
+        {
+            return Result.error("failed");
+        }
+    }
     @PostMapping("/scheme")
     public Result selectAllPersonalScheme(@RequestBody PersonalSchemeTable personalSchemeTable)
     {
@@ -140,11 +151,35 @@ public class PersonalInfoController {
     }
 
     @PostMapping("/addScheme")
-    public Result addScheme(@RequestBody SchemeTable schemeTable)
+    public Result addScheme(@RequestBody Map<String,Object> params)
     {
+        Long envId = new Long((Integer) params.get("envId"));
+        Long userId = new Long((Integer) params.get("envId"));
+        Long plantId = new Long((Integer) params.get("plantId"));
+        String schemeName = (String)params.get("schemeName");
+        Double temperature = new Double((String)params.get("temperature"));
+        Integer moisture = new Integer((String)params.get("moisture")) ;
+        Integer lightTime = new Integer((String)params.get("lightTime"));
+        String fertilizer = (String) params.get("fertilizer");
+        Integer growPeriod = (Integer) params.get("growPeriod");
+
+        SchemeTable schemeTable = new SchemeTable();
+        schemeTable.setSchemeName(schemeName);
+        schemeTable.setPassed(false);
+        schemeTable.setUserId(userId);
+        schemeTable.setPlantId(plantId);
+        schemeTable.setTemperature(temperature);
+        schemeTable.setMoisture(moisture);
+        schemeTable.setLikesNums(0);
+        schemeTable.setIsUpload(false);
+        schemeTable.setLightTime(lightTime);
+        schemeTable.setFertilizer(fertilizer);
+        schemeTable.setGrowPeriod(growPeriod);
+
+
         Long schemeId = schemeTableService.addScheme(schemeTable);
 
-        if(personalSchemeTableService.addPersonalScheme(schemeTable.getUserId(),schemeId))
+        if(personalSchemeTableService.addPersonalScheme(schemeTable.getUserId(),schemeId,envId))
         {
             return Result.ok();
         }
@@ -155,8 +190,39 @@ public class PersonalInfoController {
     @PostMapping("/env")
     public Result addPersonalEnv(@RequestBody EnvTable envTable)
     {
-//        envTableService
+        if(envTableService.inserEnv(envTable))
+        {
+            return Result.ok();
+        }
 
-        return Result.ok();
+        return Result.error();
+    }
+
+    @PostMapping("/addSchemeToPersonal")
+    public Result addSchemeToPersonal(@RequestBody Map<String,Long>params)
+    {
+        Long envId = params.get("envId");
+        Long schemeId = params.get("schemeId");
+        Long userId = params.get("userId");
+
+        Boolean res = personalSchemeTableService.addPersonalScheme(userId,schemeId,envId);
+        if(res == true)
+        {
+            return Result.ok();
+        }
+        return Result.error();
+    }
+
+    @PostMapping("/removePersonalScheme")
+    public Result removePersonalScheme(@RequestBody Map<String,Long>params)
+    {
+        Long schemePerId = params.get("id");
+
+        if(personalSchemeTableService.removePersonalScheme(schemePerId))
+        {
+            return Result.ok();
+        }
+
+        return Result.error();
     }
 }

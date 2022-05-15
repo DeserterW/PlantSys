@@ -21,4 +21,10 @@ public interface EnvTableService extends IService<EnvTable> {
     List<Long> selectEnv(Long userId);
 
     List<EnvTable> selectEnvDetail(Long userId);
+
+    Boolean inserEnv(EnvTable envTable);
+
+    Boolean removeEnv(EnvTable envTable);
+
+    EnvTable selectEnvById(Long envId);
 }

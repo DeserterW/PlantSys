@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.github.pagehelper.PageInfo;
 import com.why.plant.dao.model.UserTable;
 
+import java.util.List;
 import java.util.Map;
 
 public interface UserTableService extends IService<UserTable> {
@@ -14,5 +15,6 @@ public interface UserTableService extends IService<UserTable> {
 
     Boolean submitUserInfo(UserTable userTable);
 
+    List<UserTable> selectAllName(UserTable userTable);
 
 }

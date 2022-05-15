@@ -2,6 +2,7 @@ package com.why.plant.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.why.plant.dao.model.EnvTable;
 import com.why.plant.dao.model.PersonalSchemeTable;
 import com.why.plant.dao.model.SchemeTable;
 
@@ -19,4 +20,12 @@ public interface SchemeTableService extends IService<SchemeTable> {
     SchemeTable selectSchemeDetail(Long schemeId);
 
     Long addScheme(SchemeTable schemeTable);
+
+    List<SchemeTable> selectScheme(Boolean passed);
+
+    List<SchemeTable> selectAllScheme(Long plantId);
+
+    List<SchemeTable> recommdation(EnvTable envTable,List<SchemeTable> schemeTables);
+
+    Boolean putALike(SchemeTable schemeTableUpdate);
 }

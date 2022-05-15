@@ -77,4 +77,12 @@ public class UserTableServiceImpl extends ServiceImpl<UserTableMapper, UserTable
         }
         return false;
     }
+
+    @Override
+    public List<UserTable> selectAllName(UserTable userTable) {
+
+        List<UserTable> userTables = userTableMapper.selectList(new LambdaQueryWrapper<UserTable>());
+
+        return userTables;
+    }
 }
