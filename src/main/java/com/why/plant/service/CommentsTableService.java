@@ -12,6 +12,13 @@ import java.util.List;
 */
 public interface CommentsTableService extends IService<CommentsTable> {
 
-    public List<CommentsTable> getAllComment(CommentsTable commentsTable);
+    public List<CommentsTable> getAllComment(CommentsTable commentsTable, Boolean isPassed);
 
+    public List<CommentsTable> getSeriesComment(List<Long> commentIds);
+
+    public Boolean putALike(CommentsTable commentsTable);
+
+    public Long commentBack(CommentsTable commentsTable);
+
+    public Boolean setPassed(CommentsTable commentsTable);
 }

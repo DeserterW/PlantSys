@@ -59,4 +59,31 @@ public class PlantTableController {
         return Result.ok(plantTables);
     }
 
+
+    @PostMapping("/addPlant")
+    @CrossOrigin
+    public Result insertAddPlant(@RequestBody PlantTable plantTable)
+    {
+
+        if(plantTableService.addPlant(plantTable))
+        {
+            return Result.ok();
+        }
+
+        return Result.error();
+    }
+
+    @PostMapping("/removePlant")
+    @CrossOrigin
+    public Result removePlant(@RequestBody PlantTable plantTable)
+    {
+
+        if(plantTableService.removePlant(plantTable))
+        {
+            return Result.ok();
+        }
+
+
+        return Result.error();
+    }
 }

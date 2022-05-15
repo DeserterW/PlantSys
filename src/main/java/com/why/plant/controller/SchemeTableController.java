@@ -69,6 +69,7 @@ public class SchemeTableController {
         return Result.ok(schemeTables);
     }
 
+
     @PostMapping("/recommandation")
     public Result recommandation(@RequestBody Map<String,Long> params)
     {
@@ -102,6 +103,33 @@ public class SchemeTableController {
         }
 
         return Result.error();
+    }
+
+    @PostMapping("/checkScheme")
+    public Result checkScheme(@RequestBody Map<String,String> params)
+    {
+        Boolean passed = Boolean.parseBoolean(params.get("passed"));
+        if(passed == false) {
+            return Result.error("not passed");
+        }else
+        {
+            Long shcemeId = Long.parseLong(params.get("id"));
+            schemeTableService.passScheme(shcemeId);
+        }
+
+        return Result.ok();
+    }
+
+    @PostMapping("/removeScheme")
+    public Result removeScheme(@RequestBody SchemeTable schemeTable)
+    {
+
+        if(schemeTableService.deleteScheme(schemeTable))
+        {
+            return Result.ok();
+        }else {
+            return Result.error();
+        }
     }
 
 }

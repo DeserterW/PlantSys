@@ -6,50 +6,39 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
-
-
 import lombok.Data;
 
 /**
  * 
- * @TableName CommentsTable
+ * @TableName CommentTotalTable
  */
-@TableName(value ="CommentsTable")
+@TableName(value ="CommentTotalTable")
 @Data
-public class CommentsTable implements Serializable {
+public class CommentTotalTable implements Serializable {
     /**
-     * id
+     * 
      */
     @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
-     * user_id
+     * 
      */
     private Long userId;
 
     /**
-     * 评论内容
-     */
-    private String content;
-
-    /**
-     * 日期
+     * 
      */
     private Date date;
 
     /**
-     * 赞数
-     */
-    private Integer likesNums;
-
-    /**
-     * 标题
+     * 
      */
     private String title;
 
     /**
-     * passed
+     * 
      */
-    private Boolean passed;
+    private String commentList;
+
 }

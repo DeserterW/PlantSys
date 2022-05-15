@@ -52,4 +52,29 @@ public class PlantTableServiceImpl extends ServiceImpl<PlantTableMapper, PlantTa
 
         return plantTables;
     }
+
+    @Override
+    public Boolean addPlant(PlantTable plantTable) {
+        int res = plantTableMapper.insert(plantTable);
+        if( res == 1)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public Boolean removePlant(PlantTable plantTable) {
+
+        int res = plantTableMapper.deleteById(plantTable);
+
+        if(res == 1)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
 }

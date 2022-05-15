@@ -19,7 +19,7 @@ public interface SchemeTableService extends IService<SchemeTable> {
 
     SchemeTable selectSchemeDetail(Long schemeId);
 
-    Long addScheme(SchemeTable schemeTable);
+    Long addScheme(SchemeTable schemeTable,boolean isAdmin);
 
     List<SchemeTable> selectScheme(Boolean passed);
 
@@ -28,4 +28,8 @@ public interface SchemeTableService extends IService<SchemeTable> {
     List<SchemeTable> recommdation(EnvTable envTable,List<SchemeTable> schemeTables);
 
     Boolean putALike(SchemeTable schemeTableUpdate);
+
+    Boolean passScheme(Long schemeId);
+
+    Boolean deleteScheme(SchemeTable schemeTable);
 }

@@ -48,14 +48,20 @@ public class SchemeTableServiceImpl extends ServiceImpl<SchemeTableMapper, Schem
 
         SchemeTable schemeTable = schemeTableMapper.selectOne(new LambdaQueryWrapper<SchemeTable>().eq(SchemeTable::getId,schemeId));
 
-        return schemeTable != null ? schemeTable : null;
+        return schemeTable;
     }
 
     @Override
-    public Long addScheme(SchemeTable schemeTable) {
+    public Long addScheme(SchemeTable schemeTable ,boolean isAdmin) {
 
         schemeTable.setIsUpload(false);
-        schemeTable.setPassed(false);
+        if(isAdmin)
+        {
+            schemeTable.setPassed(true);
+        }else
+        {
+            schemeTable.setPassed(false);
+        }
         schemeTable.setLikesNums(0);
         Integer res = schemeTableMapper.insert(schemeTable);
         if(res != 1)
@@ -140,6 +146,36 @@ public class SchemeTableServiceImpl extends ServiceImpl<SchemeTableMapper, Schem
         if(res == 1) return true;
 
         return false;
+    }
+
+    @Override
+    public Boolean passScheme(Long schemeId) {
+
+        SchemeTable schemeTable  = new SchemeTable();
+        schemeTable.setId(schemeId);;
+        schemeTable.setPassed(true);
+
+        int res = schemeTableMapper.updateById(schemeTable);
+
+        if( res == 1)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public Boolean deleteScheme(SchemeTable schemeTable) {
+
+        int res = schemeTableMapper.deleteById(schemeTable);
+
+        if(res == 1)
+        {
+            return true;
+        }else
+            return false;
+
     }
 }
 

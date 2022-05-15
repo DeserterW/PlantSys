@@ -14,4 +14,8 @@ public interface PlantTableService extends IService<PlantTable> {
     String selectName(Long plantId);
 
     List<PlantTable> selectAllName( );
+
+    Boolean addPlant(PlantTable plantTable);
+
+    Boolean removePlant(PlantTable plantTable);
 }

@@ -154,7 +154,7 @@ public class PersonalInfoController {
     public Result addScheme(@RequestBody Map<String,Object> params)
     {
         Long envId = new Long((Integer) params.get("envId"));
-        Long userId = new Long((Integer) params.get("envId"));
+        Long userId = new Long((Integer) params.get("userId"));
         Long plantId = new Long((Integer) params.get("plantId"));
         String schemeName = (String)params.get("schemeName");
         Double temperature = new Double((String)params.get("temperature"));
@@ -177,12 +177,45 @@ public class PersonalInfoController {
         schemeTable.setGrowPeriod(growPeriod);
 
 
-        Long schemeId = schemeTableService.addScheme(schemeTable);
+        Long schemeId = schemeTableService.addScheme(schemeTable,false);
 
         if(personalSchemeTableService.addPersonalScheme(schemeTable.getUserId(),schemeId,envId))
         {
             return Result.ok();
         }
+
+        return Result.error();
+    }
+
+    @PostMapping("/addSchemeAdmin")
+    public Result addSchemeAdmin(@RequestBody Map<String,Object> params)
+    {
+        Long userId = new Long((Integer) params.get("userId"));
+        Long plantId = new Long((Integer) params.get("plantId"));
+        String schemeName = (String)params.get("schemeName");
+        Double temperature = new Double((String)params.get("temperature"));
+        Integer moisture = new Integer((String)params.get("moisture")) ;
+        Integer lightTime = new Integer((String)params.get("lightTime"));
+        String fertilizer = (String) params.get("fertilizer");
+        Integer growPeriod = (Integer) params.get("growPeriod");
+
+        SchemeTable schemeTable = new SchemeTable();
+        schemeTable.setSchemeName(schemeName);
+        schemeTable.setPassed(false);
+        schemeTable.setUserId(userId);
+        schemeTable.setPlantId(plantId);
+        schemeTable.setTemperature(temperature);
+        schemeTable.setMoisture(moisture);
+        schemeTable.setLikesNums(0);
+        schemeTable.setIsUpload(false);
+        schemeTable.setLightTime(lightTime);
+        schemeTable.setFertilizer(fertilizer);
+        schemeTable.setGrowPeriod(growPeriod);
+
+
+        Long schemeId = schemeTableService.addScheme(schemeTable,true);
+        if(schemeId != null)
+            return Result.ok();
 
         return Result.error();
     }
