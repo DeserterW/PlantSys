@@ -2,6 +2,7 @@ package com.why.plant.controller;
 
 
 import com.why.plant.common.model.Result;
+import com.why.plant.dao.model.EnvTable;
 import com.why.plant.dao.model.EnvironmentalchangeTable;
 import com.why.plant.service.EnvTableService;
 import com.why.plant.service.EnvironmentalchangeTableService;
@@ -15,6 +16,7 @@ import java.util.Map;
 
 @RequestMapping("/monitor")
 @RestController
+@CrossOrigin
 public class TempatureAndHumidityController {
 
     @Autowired
@@ -24,9 +26,7 @@ public class TempatureAndHumidityController {
     private EnvTableService envTableService;
 
     @PostMapping("/temperature")
-    @CrossOrigin
-    public Result monitorOnTempature(@RequestBody Map<String, Long> params)
-    {
+    public Result monitorOnTempature(@RequestBody Map<String, Long> params) {
 
         Long id = params.get("user_id");
 
@@ -37,6 +37,15 @@ public class TempatureAndHumidityController {
         List<EnvironmentalchangeTable> result = environmentalchangeTableService.showRecentTemperature(envs_id);
 
         return Result.ok(result);
+    }
+
+    @PostMapping("/envMonitor")
+    public Result monitorOnEnv(@RequestBody EnvTable envTable)
+    {
+        List<EnvironmentalchangeTable>environmentalchangeTables = environmentalchangeTableService.selectRecentEnv(envTable.getId());
+
+
+        return Result.ok(environmentalchangeTables);
     }
 
 }

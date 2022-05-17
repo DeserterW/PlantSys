@@ -15,4 +15,6 @@ import java.util.Map;
 public interface EnvironmentalchangeTableService extends IService<EnvironmentalchangeTable> {
 
     public List<EnvironmentalchangeTable> showRecentTemperature(List<Long> envs_id);
+
+    public List<EnvironmentalchangeTable> selectRecentEnv(Long envId);
 }

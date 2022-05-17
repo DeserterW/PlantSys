@@ -35,6 +35,14 @@ public class EnvironmentalchangeTableServiceImpl extends ServiceImpl<Environment
 
         return result;
     }
+
+    @Override
+    public List<EnvironmentalchangeTable> selectRecentEnv(Long envId) {
+        List<EnvironmentalchangeTable> result =  environmentalchangeTableMapper.selectList(new LambdaQueryWrapper<EnvironmentalchangeTable>()
+                .eq(EnvironmentalchangeTable::getEnvId,envId));
+
+        return result;
+    }
 }
 
 

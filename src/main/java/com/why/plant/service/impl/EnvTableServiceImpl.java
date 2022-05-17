@@ -82,4 +82,25 @@ public class EnvTableServiceImpl extends ServiceImpl<EnvTableMapper, EnvTable> i
 
         return envTable;
     }
+
+    @Override
+    public Boolean setAlert(Long envId, Double threshold, Integer type) {
+        EnvTable envTable = new EnvTable();
+        if(type == 0)
+        {
+
+            envTable.setId(envId);
+            envTable.setTempAlert(threshold);
+        }else
+        {
+            envTable.setId(envId);
+            envTable.setHumidityAlert(threshold);;
+        }
+        int res = envTableMapper.updateById(envTable);
+
+        if(res == 1)
+            return true;
+        else
+            return false;
+    }
 }

@@ -7,6 +7,7 @@ import com.why.plant.common.model.PageQuery;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.nio.DoubleBuffer;
 
 @Data
 @TableName("EnvTable")
@@ -47,4 +48,14 @@ public class EnvTable  extends PageQuery implements Serializable {
      * 环境名字
      */
     private String envName;
+
+    /**
+     * 湿度监控
+     */
+    private Double humidityAlert;
+
+    /**
+     * 温度监控
+     */
+    private Double tempAlert;
 }

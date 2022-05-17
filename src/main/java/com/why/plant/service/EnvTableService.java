@@ -27,4 +27,6 @@ public interface EnvTableService extends IService<EnvTable> {
     Boolean removeEnv(EnvTable envTable);
 
     EnvTable selectEnvById(Long envId);
+
+    Boolean setAlert(Long envId, Double threshold, Integer type);
 }

@@ -32,4 +32,20 @@ public class EnvTableController {
 
         return Result.error();
     }
+
+    @PostMapping("/setAlert")
+    public Result setAlert(@RequestBody Map<String,String> params)
+    {
+        Long envId = Long.parseLong(params.get("envId"));
+        Integer type = Integer.parseInt(params.get("type"));
+        Double threshold = Double.parseDouble(params.get("threshold"));
+
+        if(envTableService.setAlert(envId,threshold,type))
+        {
+            return Result.ok();
+        }else
+        {
+            return Result.error();
+        }
+    }
 }
